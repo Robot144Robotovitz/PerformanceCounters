@@ -26,9 +26,9 @@ namespace ConsoleApp1 {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Lightshot")]
-        public string processName {
+        public string ProcessName {
             get {
-                return ((string)(this["processName"]));
+                return ((string)(this["ProcessName"]));
             }
         }
         
@@ -43,7 +43,7 @@ namespace ConsoleApp1 {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("result.csv")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\BigBear\\source\\repos\\ConsoleApp1\\result")]
         public string outputFolder {
             get {
                 return ((string)(this["outputFolder"]));

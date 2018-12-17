@@ -31,7 +31,7 @@ namespace ConsoleApp1
         //we might want to read properties from other source (.properties, xml, json, whatnot)
         //in wich case we should just add another constructor
         public Config() {
-            outputFolder = ParseOutputFile(ConfigurationManager.AppSettings.Get("outputFile"));
+            outputFolder = ParseOutputFile(ConfigurationManager.AppSettings.Get("outputFolder"));
             interval = ParseInterval(ConfigurationManager.AppSettings.Get("interval"));
             processName = ParseProcessName(ConfigurationManager.AppSettings.Get("processName"));
         }
@@ -41,6 +41,7 @@ namespace ConsoleApp1
 
             if (Int32.TryParse(input, out int result) && result > 0)
             {
+                if (result > 600) Console.WriteLine("You set your timer for more than 10 minutes! Are you sure about it?");
                 return result;
             }
             else

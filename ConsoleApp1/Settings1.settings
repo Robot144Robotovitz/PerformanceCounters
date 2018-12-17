@@ -2,14 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ConsoleApp1" GeneratedClassName="Settings1">
   <Profiles />
   <Settings>
-    <Setting Name="processName" Type="System.String" Scope="Application">
+    <Setting Name="ProcessName" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Lightshot</Value>
     </Setting>
     <Setting Name="interval" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="outputFolder" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">result.csv</Value>
+      <Value Profile="(Default)">C:\Users\BigBear\source\repos\ConsoleApp1\result</Value>
     </Setting>
   </Settings>
 </SettingsFile>
