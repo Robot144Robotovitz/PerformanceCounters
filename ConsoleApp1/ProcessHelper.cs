@@ -28,7 +28,8 @@ namespace ConsoleApp1
             //we don't want to wait forever, so let's say we'll wait for ~1 minute
             //should i use a Timer instaed?
             int count = 0;
-           
+            Console.WriteLine("The process is not started\n Will wait for the process to start.");
+
             while (!isProcessAlive(config)) {
                 count++;
                 Thread.Sleep(50);
