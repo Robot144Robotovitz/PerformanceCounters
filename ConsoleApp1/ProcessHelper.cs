@@ -17,7 +17,7 @@ namespace ConsoleApp1
             foreach (Process theprocess in processlist)
             {
                 //yet again, should use file log here
-                Console.WriteLine("Process: {0} ID: {1}", theprocess.ProcessName, theprocess.Id);
+                Program.HandleMessage(String.Format("Process: {0} ID: {1}", theprocess.ProcessName, theprocess.Id));
                 p = theprocess;
             }
             return p;
@@ -28,7 +28,7 @@ namespace ConsoleApp1
             //we don't want to wait forever, so let's say we'll wait for ~1 minute
             //should i use a Timer instaed?
             int count = 0;
-            Console.WriteLine("The process is not started\n Will wait for the process to start.");
+            Program.HandleMessage("The process is not started\n Will wait for the process to start.");
 
             while (!isProcessAlive(config)) {
                 count++;

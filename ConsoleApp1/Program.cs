@@ -32,7 +32,7 @@ namespace ConsoleApp1
             }
             catch (Exception e){
                 //should use some sort of file log
-                Console.WriteLine(e);
+                HandleMessage(e);
                 Console.ReadLine();
                 Environment.Exit(0);
             }
@@ -48,22 +48,22 @@ namespace ConsoleApp1
             _handler += new EventHandler(Handler);
             SetConsoleCtrlHandler(_handler, true);
 
-            Console.WriteLine("Start writing in file");
+            HandleMessage("Start writing in file");
             performanceCounters.startWriting(config);
 
-            writeHelper.Write(config, performanceCounters.getTotalResult());
+            writeHelper.Write(config, performanceCounters);
             performanceCounters.closeCounters();
 
 
             // Ожидание нажатия клавиши Enter перед завершением работы          
-            Console.WriteLine("Saved result to " + config.GetoOutputFile());
+            HandleMessage("Saved result to " + config.GetoOutputFile());
             Console.ReadLine();
 
         }
 
         static void CurrentDomain_ProcessExit(object sender, EventArgs e, Config config, PerformanceCounters performanceCounters)
         {
-            writeHelper.Write(config, performanceCounters.getTotalResult());
+            writeHelper.Write(config, performanceCounters);
             performanceCounters.closeCounters();
 
         }
@@ -88,17 +88,17 @@ namespace ConsoleApp1
 
         private static bool Handler(CtrlType sig)
         {
-            Console.WriteLine("Exiting system due to external CTRL-C, or process kill, or shutdown" );
+            HandleMessage("Exiting system due to external CTRL-C, or process kill, or shutdown" );
 
 
             //do your cleanup here
             //Thread.Sleep(5000); //simulate some cleanup delay
-            writeHelper.Write(config, performanceCounters.getTotalResult());
+            writeHelper.Write(config, performanceCounters);
             performanceCounters.closeCounters();
-       
-            Console.WriteLine("Saved result to " + config.GetoOutputFile());
 
-            Console.WriteLine("Cleanup complete");
+            HandleMessage("Saved result to " + config.GetoOutputFile());
+
+            HandleMessage("Cleanup complete");
 
             //allow main to run off
             //bool exitSystem = add;
@@ -109,6 +109,18 @@ namespace ConsoleApp1
             return true;
         }
         #endregion
+
+
+        //should use some file logger, probably. 
+        //There's Log4cs library, but in a current situation that's an overkill
+        public static void  HandleMessage(string msg) {
+            Console.WriteLine(msg);
+        }
+
+        public static void HandleMessage(Exception msg)
+        {
+            Console.WriteLine(msg);
+        }
 
     }
 }

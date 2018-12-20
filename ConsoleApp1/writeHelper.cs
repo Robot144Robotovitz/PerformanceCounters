@@ -12,7 +12,7 @@ namespace ConsoleApp1
     {
 
         
-        public static void Write(Config config, ArrayList result)
+        public static void Write(Config config, PerformanceCounters PCs )
         {
             string csvSeparator = ";";
             
@@ -23,13 +23,17 @@ namespace ConsoleApp1
             {
                 file.WriteLine("sep=" + csvSeparator);
                 //TODO: refactor with getNames from Result
-                file.WriteLine(string.Format("{1}{0}{2}{0}{3}{0}{4}", csvSeparator, "% Processor Time", "Working Set(RAM)", "Handle Count", "Thread Count") );
-                foreach (Result line in result) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.Append(line.getCpuCounter()).Append(csvSeparator);
-                    sb.Append(line.getRamCounter()).Append(csvSeparator);
-                    sb.Append(line.getPageCounter()).Append(csvSeparator);
-                    sb.Append(line.getThreadCounter()).Append(csvSeparator);                    
+                StringBuilder sb = new StringBuilder();
+                foreach (PC pc in PCs.getPerformaneCountersList()) {
+                    sb.Append(pc.DsiplayName).Append(csvSeparator);
+                }
+                file.WriteLine(sb.ToString());
+                foreach (List<float> line in PCs.getTotalResult()) {
+                    sb.Clear();
+                    //theres probably a better solution
+                    foreach (float fl in line) {
+                        sb.Append(fl).Append(csvSeparator);
+                    }          
                     file.WriteLine(sb.ToString());
                     file.Flush();
                 }
